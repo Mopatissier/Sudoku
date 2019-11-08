@@ -1,6 +1,8 @@
 package be.technifutur.devmob9.poo.sudoku;
 
 import be.technifutur.devmob9.poo.sudoku.sudoku16x16.Sudoku16x16Vue;
+import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4;
+import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4Ctrl;
 import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4Vue;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Vue;
 import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileVue;
@@ -10,7 +12,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Sudoku4x4Vue s4x4 = new Sudoku4x4Vue();
+        Sudoku4x4 s4x4Modele = new Sudoku4x4();
+        Sudoku4x4Vue s4x4Vue = new Sudoku4x4Vue(s4x4Modele);
+        Sudoku4x4Ctrl s4x4Ctrl = new Sudoku4x4Ctrl(s4x4Modele, s4x4Vue);
+
+
         Sudoku9x9Vue s9x9 = new Sudoku9x9Vue();
         Sudoku16x16Vue s16x16 = new Sudoku16x16Vue();
         SudokuEtoileVue sEtoile = new SudokuEtoileVue();
@@ -31,7 +37,7 @@ public class Main {
 
             switch (choix) {
                 case "1" :
-                    s4x4.afficher();
+                    s4x4Ctrl.start();
                     break;
 
                 case "2" :
@@ -57,6 +63,5 @@ public class Main {
                 entree.nextLine();
 
         }
-
     }
 }
