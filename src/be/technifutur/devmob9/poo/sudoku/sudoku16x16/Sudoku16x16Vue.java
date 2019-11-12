@@ -1,55 +1,98 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku16x16;
 
+import be.technifutur.devmob9.poo.sudoku.util.User;
+
 public class Sudoku16x16Vue {
 
+    private Sudoku16x16 modele;
+    private User user;
     private String tableau;
 
-    public Sudoku16x16Vue() {
+    public Sudoku16x16Vue(Sudoku16x16 modele, User user) {
 
         StringBuilder tempo = new StringBuilder();
 
+        tempo.append("Sudoku 16x16 :\n\n");
+
         tempo.append("╔═══╤═══╤═══╤═══╦═══╤═══╤═══╤═══╦═══╤═══╤═══╤═══╦═══╤═══╤═══╤═══╗\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╠═══╪═══╪═══╪═══╬═══╪═══╪═══╪═══╬═══╪═══╪═══╪═══╬═══╪═══╪═══╪═══╣\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╠═══╪═══╪═══╪═══╬═══╪═══╪═══╪═══╬═══╪═══╪═══╪═══╬═══╪═══╪═══╪═══╣\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╠═══╪═══╪═══╪═══╬═══╪═══╪═══╪═══╬═══╪═══╪═══╪═══╬═══╪═══╪═══╪═══╣\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╟───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╫───┼───┼───┼───╢\n");
-        tempo.append("║   │   │   │   ║   │   │   │   ║   │   │   │   ║   │   │   │   ║\n");
+        tempo.append("║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║ . │ . │ . │ . ║\n");
         tempo.append("╚═══╧═══╧═══╧═══╩═══╧═══╧═══╧═══╩═══╧═══╧═══╧═══╩═══╧═══╧═══╧═══╝\n");
 
         tableau = tempo.toString();
+        this.modele = modele;
+        this.user = user;
+
+        tableau = tableau.replaceAll("\\.", "%s");
 
     }
 
-    public void afficher() {
+    public void affiche(String message) {
 
-        System.out.println(tableau);
+        String tab;
 
+        Character[] valeur = new Character[256];
+
+        for(int i = 0; i < 256; i++) {
+            char val = modele.get(new Position16x16(i));
+            if(val == modele.VIDE) {
+                valeur[i] = ' ';
+            } else {
+                valeur[i] = val;
+            }
+
+        }
+
+        tab = String.format(tableau, (Object[]) valeur);
+
+        user.affiche(tab);
+
+        if(!message.equals(""))
+            user.affiche(message + '\n');
+
+
+    }
+
+    public String saisir(String prompt) {
+
+        user.affiche(prompt);
+
+        return user.saisie();
+
+    }
+
+    public void setUser(User u) {
+
+        user = u;
     }
 
 }

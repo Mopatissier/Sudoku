@@ -11,9 +11,16 @@ public class Sudoku9x9 {
             this.sudoku[i] = 0;
     }
 
-    public void add(Position9x9 p, char valeur) {
+    public boolean add(Position9x9 p, char valeur) {
 
-        this.sudoku[p.getPos()] = valeur;
+        boolean caseLibre = true;
+
+        if(this.sudoku[p.getPos()] == VIDE)
+            this.sudoku[p.getPos()] = valeur;
+        else
+            caseLibre = false;
+
+        return caseLibre;
     }
 
     public char remove(Position9x9 p) {
@@ -29,5 +36,19 @@ public class Sudoku9x9 {
 
         return this.sudoku[p.getPos()];
 
+    }
+
+    public boolean isComplet() {
+
+        boolean complet = false;
+        int i = 0;
+
+        while(i < 81 && this.sudoku[i] != VIDE)
+            i ++;
+
+        if(i == 81)
+            complet = true;
+
+        return complet;
     }
 }

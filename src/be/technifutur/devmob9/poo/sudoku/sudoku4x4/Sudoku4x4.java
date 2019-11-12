@@ -21,7 +21,6 @@ public class Sudoku4x4 {
             caseLibre = false;
 
         return caseLibre;
-
     }
 
     public char remove(Position4x4 p) {

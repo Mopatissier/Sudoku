@@ -32,7 +32,6 @@ public class PositionEtoile {
         return this.position;
     }
 
-    //A changer
     public int getSector() {
         int sector = 0;
         int decalage = 0;

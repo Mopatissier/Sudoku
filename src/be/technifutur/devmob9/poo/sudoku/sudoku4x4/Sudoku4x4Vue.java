@@ -1,92 +1,79 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku4x4;
 
-import java.util.Scanner;
+import be.technifutur.devmob9.poo.sudoku.util.User;
 
 public class Sudoku4x4Vue {
 
     private Sudoku4x4 modele;
+    private User user;
     private String tableau;
 
-    public Sudoku4x4Vue(Sudoku4x4 modele){
+    public Sudoku4x4Vue(Sudoku4x4 modele, User user){
 
         StringBuilder tempo = new StringBuilder();
 
+        tempo.append("Sudoku 4x4 :\n\n");
+
         tempo.append("╔═══╤═══╦═══╤═══╗\n");
-        tempo.append("║   │   ║   │   ║\n");
+        tempo.append("║ . │ . ║ . │ . ║\n");
         tempo.append("╟───┼───╫───┼───╢\n");
-        tempo.append("║   │   ║   │   ║\n");
+        tempo.append("║ . │ . ║ . │ . ║\n");
         tempo.append("╠═══╪═══╬═══╪═══╣\n");
-        tempo.append("║   │   ║   │   ║\n");
+        tempo.append("║ . │ . ║ . │ . ║\n");
         tempo.append("╟───┼───╫───┼───╢\n");
-        tempo.append("║   │   ║   │   ║\n");
+        tempo.append("║ . │ . ║ . │ . ║\n");
         tempo.append("╚═══╧═══╩═══╧═══╝\n");
+
 
         this.tableau = tempo.toString();
         this.modele = modele;
+
+        this.user = user;
+
+        tableau = tableau.replaceAll("\\.", "%s");
 
     }
 
 
     public void affiche(String message) {
 
-        StringBuilder tempo = new StringBuilder();
-        int ligne;
-        int colonne;
-        char valeur;
-        Position4x4 pos;
+        String tab;
 
-        tempo.append("Sudoku 4x4 :\n\n");
+        Character[] valeur = new Character[16];
 
-        tempo.append("╔═══╤═══╦═══╤═══╗\n");
-
-        for(ligne = 0; ligne < 4; ligne ++) {
-            for(colonne = 0; colonne < 4; colonne ++) {
-
-                if(colonne%2 == 0)
-                    tempo.append("║ ");
-                else
-                    tempo.append("│ ");
-
-                pos = new Position4x4(ligne, colonne);
-                valeur = modele.get(pos);
-
-                if(valeur == modele.VIDE)
-                    tempo.append(' ');
-                else
-                    tempo.append(valeur);
-
-                tempo.append(' ');
-
+        for(int i = 0; i < 16; i++) {
+            char val = modele.get(new Position4x4(i));
+            if(val == modele.VIDE) {
+                valeur[i] = ' ';
+            } else {
+                valeur[i] = val;
             }
 
-            tempo.append("║\n");
-            if(ligne < 3){
-
-                if(ligne%2 == 0)
-                    tempo.append("╟───┼───╫───┼───╢\n");
-                else
-                    tempo.append("╠═══╪═══╬═══╪═══╣\n");
-
-            }
-1
         }
 
-        tempo.append("╚═══╧═══╩═══╧═══╝\n\n");
+        tab = String.format(tableau, (Object[]) valeur);
 
-        tempo.append(message);
+        user.affiche(tab);
 
-        System.out.println(tempo.toString());
+        if(!message.equals(""))
+            user.affiche(message + '\n');
+
 
     }
 
     public String saisir(String prompt) {
 
-        Scanner entree = new Scanner(System.in);
+        user.affiche(prompt);
 
-        System.out.println(prompt);
+        String entree = user.saisie();
 
-        return entree.nextLine();
+        return entree;
 
+    }
+
+    public void setUser(User u) {
+
+        user = u;
     }
 
 }

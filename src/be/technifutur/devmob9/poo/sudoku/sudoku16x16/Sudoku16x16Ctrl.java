@@ -1,12 +1,11 @@
-package be.technifutur.devmob9.poo.sudoku.sudoku4x4;
+package be.technifutur.devmob9.poo.sudoku.sudoku16x16;
 
-public class Sudoku4x4Ctrl {
+public class Sudoku16x16Ctrl {
 
-    private Sudoku4x4 modele;
-    private Sudoku4x4Vue vue;
+    private Sudoku16x16 modele;
+    private Sudoku16x16Vue vue;
 
-
-    public Sudoku4x4Ctrl(Sudoku4x4 modele, Sudoku4x4Vue vue) {
+    public Sudoku16x16Ctrl(Sudoku16x16 modele, Sudoku16x16Vue vue){
 
         this.modele = modele;
         this.vue = vue;
@@ -16,7 +15,7 @@ public class Sudoku4x4Ctrl {
     public void start() {
 
         String ajout;
-        Position4x4 pos;
+        Position16x16 pos;
         int line = 0;
         int column = 0;
         char valeur = 0;
@@ -33,7 +32,7 @@ public class Sudoku4x4Ctrl {
             column = Integer.parseInt(donnees[1]);
             valeur = donnees[2].charAt(0);
 
-            pos = new Position4x4(line, column);
+            pos = new Position16x16(line, column);
 
             if(modele.add(pos, valeur)) {
                 vue.affiche("");
