@@ -4,6 +4,5 @@ public interface User {
 
     public abstract String saisie();
 
-    public void affiche(String prompt);
 
 }

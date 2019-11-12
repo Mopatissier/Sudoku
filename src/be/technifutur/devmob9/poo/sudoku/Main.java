@@ -9,6 +9,8 @@ import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4Vue;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Ctrl;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Vue;
+import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoile;
+import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileCtrl;
 import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileVue;
 import be.technifutur.devmob9.poo.sudoku.util.MyUser;
 import be.technifutur.devmob9.poo.sudoku.util.RemplisSudokus;
@@ -20,7 +22,7 @@ public class Main {
     public static void main(String[] args) {
 
         RemplisSudokus remplissage = new RemplisSudokus();
-        MyUser user = new MyUser(remplissage.Sudoku16x16Tab1());
+        MyUser user = new MyUser(remplissage.SudokuEtoileTab1());
 
         //UserConsole user = new UserConsole();
 
@@ -37,7 +39,9 @@ public class Main {
         Sudoku16x16Ctrl s16x16Ctrl = new Sudoku16x16Ctrl(s16x16Modele, s16x16Vue);
 
 
-        SudokuEtoileVue sEtoile = new SudokuEtoileVue();
+        SudokuEtoile sEtoileModele = new SudokuEtoile();
+        SudokuEtoileVue sEtoileVue = new SudokuEtoileVue(sEtoileModele, user);
+        SudokuEtoileCtrl sEtoileCtrl = new SudokuEtoileCtrl(sEtoileModele, sEtoileVue);
 
         Scanner entree = new Scanner(System.in);
         String choix = "0";
@@ -70,7 +74,8 @@ public class Main {
                     break;
 
                 case "4" :
-                    sEtoile.afficher();
+                    sEtoileCtrl.start();
+                    choix = "5";
                     break;
 
                 case "5" :

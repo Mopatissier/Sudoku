@@ -18,7 +18,6 @@ public class PositionEtoile {
 
     public int getLine() {
 
-
         return (decalageEtoile(this.position) / 21);
     }
 
@@ -121,6 +120,8 @@ public class PositionEtoile {
         }
 
         i -= decalage*6;
+
+        i =  i + column + line * 21;
 
         return i;
     }

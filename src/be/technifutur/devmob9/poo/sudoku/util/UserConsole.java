@@ -12,10 +12,4 @@ public class UserConsole implements User{
         return scan.nextLine();
     }
 
-    @Override
-    public void affiche(String prompt) {
-
-        System.out.print(prompt);
-
-    }
 }

@@ -1,5 +1,7 @@
 package be.technifutur.devmob9.poo.sudoku.util;
 
+import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.PositionEtoile;
+
 public class RemplisSudokus {
 
     public String[] Sudoku4x4Tab1(){
@@ -75,6 +77,24 @@ public class RemplisSudokus {
                 val = (char) ('1' + i%16);
 
             tab[i] = "" + i/16 + ',' + i%16 + ',' + val;
+        }
+
+        return tab;
+    }
+
+    public String[] SudokuEtoileTab1(){
+
+        String[] tab = new String[369];
+        PositionEtoile p;
+
+        char val = 0;
+
+        for(int i = 0; i < 369; i ++){
+
+            p = new PositionEtoile(i);
+
+            tab[i] = "" + p.getLine() + ',' + p.getColumn() + ',' + p.getColumnSector();
+
         }
 
         return tab;

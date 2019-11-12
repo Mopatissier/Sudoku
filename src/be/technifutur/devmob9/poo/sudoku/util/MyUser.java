@@ -20,10 +20,4 @@ public class MyUser implements User{
         return test[cpt++];
     }
 
-    @Override
-    public void affiche(String prompt) {
-
-        System.out.println(prompt);
-
-    }
 }

@@ -1,17 +1,17 @@
-package be.technifutur.devmob9.poo.sudoku.sudoku16x16;
+package be.technifutur.devmob9.poo.sudoku.sudokuEtoile;
 
-public class Sudoku16x16 {
+public class SudokuEtoile {
 
     public static final char VIDE = 0;
-    private char[] sudoku = new char[256];
+    private char[] sudoku = new char[369];
 
-    public Sudoku16x16(){
+    public SudokuEtoile(){
 
-        for (int i = 0; i < 256; i++)
+        for (int i = 0; i < 369; i++)
             this.sudoku[i] = VIDE;
     }
 
-    public boolean add(Position16x16 p, char valeur) {
+    public boolean add(PositionEtoile p, char valeur) {
 
         boolean caseLibre = true;
 
@@ -23,7 +23,7 @@ public class Sudoku16x16 {
         return caseLibre;
     }
 
-    public char remove(Position16x16 p) {
+    public char remove(PositionEtoile p) {
         char tempo;
 
         tempo = this.sudoku[p.getPos()];
@@ -32,7 +32,7 @@ public class Sudoku16x16 {
         return tempo;
     }
 
-    public char get(Position16x16 p) {
+    public char get(PositionEtoile p) {
 
         return this.sudoku[p.getPos()];
 
@@ -43,10 +43,10 @@ public class Sudoku16x16 {
         boolean complet = false;
         int i = 0;
 
-        while(i < 256 && this.sudoku[i] != VIDE)
+        while(i < 369 && this.sudoku[i] != VIDE)
             i ++;
 
-        if(i == 256)
+        if(i == 369)
             complet = true;
 
         return complet;

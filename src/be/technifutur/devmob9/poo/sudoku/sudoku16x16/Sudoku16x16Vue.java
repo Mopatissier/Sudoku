@@ -74,17 +74,17 @@ public class Sudoku16x16Vue {
 
         tab = String.format(tableau, (Object[]) valeur);
 
-        user.affiche(tab);
+        System.out.print(tab);
 
         if(!message.equals(""))
-            user.affiche(message + '\n');
+            System.out.println(message);
 
 
     }
 
     public String saisir(String prompt) {
 
-        user.affiche(prompt);
+        System.out.print(prompt);
 
         return user.saisie();
 
