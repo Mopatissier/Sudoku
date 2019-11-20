@@ -1,5 +1,7 @@
 package be.technifutur.devmob9.poo.sudoku.sudokuEtoile;
 
+import be.technifutur.devmob9.poo.sudoku.PositionException;
+import be.technifutur.devmob9.poo.sudoku.util.Cellule;
 import be.technifutur.devmob9.poo.sudoku.util.User;
 
 public class SudokuEtoileVue {
@@ -72,15 +74,17 @@ public class SudokuEtoileVue {
 
         Character[] valeur = new Character[369];
 
-        for(int i = 0; i < 369; i++) {
-            char val = modele.get(new PositionEtoile(i));
-            if(val == modele.VIDE) {
-                valeur[i] = ' ';
-            } else {
-                valeur[i] = val;
-            }
+        try {
+            for (int i = 0; i < 369; i++) {
+                char val = modele.get(new PositionEtoile(i));
+                if (val == Cellule.VIDE) {
+                    valeur[i] = ' ';
+                } else {
+                    valeur[i] = val;
+                }
 
-        }
+            }
+        } catch(PositionException e) {/* Ne devrait jamais arriver */}
 
         tab = String.format(tableau, (Object[]) valeur);
 

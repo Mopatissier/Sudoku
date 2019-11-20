@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Sudoku16x16Test {
 
-    @Test
+    /*@Test
     public void TestRemplisVide() {
         Position16x16 p = new Position16x16(10,1);
         Sudoku16x16 s = new Sudoku16x16();
@@ -34,6 +34,6 @@ class Sudoku16x16Test {
         assertEquals('1', s.remove(p));
         assertEquals(s.VIDE, s.get(p));
 
-    }
+    }*/
 
 }

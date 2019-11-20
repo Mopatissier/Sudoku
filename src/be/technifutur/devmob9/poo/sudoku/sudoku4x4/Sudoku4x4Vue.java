@@ -1,5 +1,7 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku4x4;
 
+import be.technifutur.devmob9.poo.sudoku.PositionException;
+import be.technifutur.devmob9.poo.sudoku.util.Cellule;
 import be.technifutur.devmob9.poo.sudoku.util.User;
 
 public class Sudoku4x4Vue {
@@ -41,15 +43,17 @@ public class Sudoku4x4Vue {
 
         Character[] valeur = new Character[16];
 
-        for(int i = 0; i < 16; i++) {
-            char val = modele.get(new Position4x4(i));
-            if(val == modele.VIDE) {
-                valeur[i] = ' ';
-            } else {
-                valeur[i] = val;
-            }
+        try {
+            for (int i = 0; i < 16; i++) {
+                char val = modele.get(new Position4x4(i));
+                if (val == Cellule.VIDE) {
+                    valeur[i] = ' ';
+                } else {
+                    valeur[i] = val;
+                }
 
-        }
+            }
+        } catch(PositionException e) {/* Ne devrait jamais arriver */}
 
         tab = String.format(tableau, (Object[]) valeur);
 

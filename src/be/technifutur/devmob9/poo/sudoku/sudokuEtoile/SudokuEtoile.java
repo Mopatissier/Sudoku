@@ -1,40 +1,54 @@
 package be.technifutur.devmob9.poo.sudoku.sudokuEtoile;
 
+import be.technifutur.devmob9.poo.sudoku.DoublonException;
+import be.technifutur.devmob9.poo.sudoku.LockException;
+import be.technifutur.devmob9.poo.sudoku.OccupiedException;
+import be.technifutur.devmob9.poo.sudoku.ValueException;
+import be.technifutur.devmob9.poo.sudoku.util.Cellule;
+
 public class SudokuEtoile {
 
-    public static final char VIDE = 0;
-    private char[] sudoku = new char[369];
+    private boolean locked = false;
+    private Cellule[] cellule = new Cellule[369];
 
-    public SudokuEtoile(){
+    public void setCellule(PositionEtoile p, Cellule c) {
 
-        for (int i = 0; i < 369; i++)
-            this.sudoku[i] = VIDE;
+        cellule[p.getPos()] = c;
+
     }
 
-    public boolean add(PositionEtoile p, char valeur) {
+    public Cellule getCellule(PositionEtoile p) {
 
-        boolean caseLibre = true;
+        return cellule[p.getPos()];
 
-        if(this.sudoku[p.getPos()] == VIDE)
-            this.sudoku[p.getPos()] = valeur;
-        else
-            caseLibre = false;
-
-        return caseLibre;
     }
 
-    public char remove(PositionEtoile p) {
+    public void setValue(PositionEtoile p, char valeur) throws ValueException, OccupiedException, LockException, DoublonException {
+
+        if(valeur < '1' || valeur > '9') {
+            throw new ValueException();
+        } else {
+            cellule[p.getPos()].setValue(valeur);
+        }
+
+    }
+
+    public char remove(PositionEtoile p) throws LockException {
         char tempo;
 
-        tempo = this.sudoku[p.getPos()];
-        this.sudoku[p.getPos()] = 0;
+        tempo = cellule[p.getPos()].getValue();
+
+        try {
+            cellule[p.getPos()].setValue(Cellule.VIDE);
+        } catch(OccupiedException e) {/* Ne devrait pas arriver.*/}
+        catch(DoublonException e) {/* Ne devrait pas arrvier. */}
 
         return tempo;
     }
 
     public char get(PositionEtoile p) {
 
-        return this.sudoku[p.getPos()];
+        return cellule[p.getPos()].getValue();
 
     }
 
@@ -43,12 +57,27 @@ public class SudokuEtoile {
         boolean complet = false;
         int i = 0;
 
-        while(i < 369 && this.sudoku[i] != VIDE)
+        while(i < 369 && cellule[i].getValue() != Cellule.VIDE)
             i ++;
 
         if(i == 369)
             complet = true;
 
         return complet;
+    }
+
+    public void lock() {
+
+        for(int i = 0; i < 369; i ++) {
+            if(cellule[i].getValue() != Cellule.VIDE) {
+                cellule[i].lock();
+                locked = true;
+            }
+        }
+    }
+
+    public boolean isLocked() {
+
+        return locked;
     }
 }

@@ -82,7 +82,7 @@ public class RemplisSudokus {
         return tab;
     }
 
-    public String[] SudokuEtoileTab1(){
+    /*public String[] SudokuEtoileTab1(){
 
         String[] tab = new String[369];
         PositionEtoile p;
@@ -98,6 +98,6 @@ public class RemplisSudokus {
         }
 
         return tab;
-    }
+    }*/
 
 }

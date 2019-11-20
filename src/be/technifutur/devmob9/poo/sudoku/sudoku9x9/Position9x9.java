@@ -1,17 +1,22 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku9x9;
 
+import be.technifutur.devmob9.poo.sudoku.PositionException;
+
 public class Position9x9 {
 
     private int position;
 
-    public Position9x9(int line, int column) {
+    public Position9x9(int line, int column) throws PositionException {
+
+        if(line < 0 || line > 8 || column < 0 || column > 8)
+            throw new PositionException();
 
         this.position = line*9 + column;
     }
 
-    public Position9x9(int pos) {
+    public Position9x9(int pos) throws PositionException{
 
-        this.position = pos;
+        this(pos/9, pos%9);
     }
 
     public int getLine() {

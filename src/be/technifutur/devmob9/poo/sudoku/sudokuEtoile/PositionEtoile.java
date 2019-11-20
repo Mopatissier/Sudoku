@@ -1,19 +1,45 @@
 package be.technifutur.devmob9.poo.sudoku.sudokuEtoile;
 
-public class PositionEtoile {
+import be.technifutur.devmob9.poo.sudoku.PositionException;
 
-    // A FAIRE LES TEST !!!!!!
+public class PositionEtoile {
 
     private int position;
 
-    public PositionEtoile(int line, int column) {
+    public PositionEtoile(int line, int column) throws PositionException {
+
+        if(line < 0 || line > 20 || column < 0 || column > 20)
+            throw new PositionException();
+
+        //Trou nord
+        if(column > 8 && column < 12 && line < 6)
+            throw new PositionException();
+
+        //Trou sud
+        if(column > 8 && column < 12 && line > 14)
+            throw new PositionException();
+
+        //Trou ouest
+        if(line > 8 && line < 12 && column < 6)
+            throw new PositionException();
+
+        //Trou est
+        if(line > 8 && line < 12 && column > 14)
+            throw new PositionException();
+
 
         this.position = decalageEtoile(line, column);
 
     }
 
-    public PositionEtoile(int pos) {
+    public PositionEtoile(int pos) throws PositionException {
+
+        if(pos >= 369)
+            throw new PositionException();
+
         this.position = pos;
+
+
     }
 
     public int getLine() {

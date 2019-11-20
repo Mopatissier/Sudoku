@@ -1,5 +1,8 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku4x4;
 
+import be.technifutur.devmob9.poo.sudoku.*;
+import be.technifutur.devmob9.poo.sudoku.util.Cellule;
+
 public class Sudoku4x4Ctrl {
 
     private Sudoku4x4 modele;
@@ -27,18 +30,35 @@ public class Sudoku4x4Ctrl {
 
             ajout = vue.saisir("Entrez une valeur et ces coordonnées. (Ligne,colonne,valeur) : ");
 
-            String[] donnees = ajout.split(",");
+            try {
 
-            line = Integer.parseInt(donnees[0]);
-            column = Integer.parseInt(donnees[1]);
-            valeur = donnees[2].charAt(0);
+                String[] donnees = ajout.split(",");
 
-            pos = new Position4x4(line, column);
+                line = Integer.parseInt(donnees[0]);
+                column = Integer.parseInt(donnees[1]);
+                valeur = donnees[2].charAt(0);
 
-            if(modele.add(pos, valeur)) {
+                if(valeur == '0')
+                    valeur = Cellule.VIDE;
+
+                pos = new Position4x4(line, column);
+
+                modele.setValue(pos, valeur);
+
                 vue.affiche("");
-            } else {
-                vue.affiche("Erreur : case déjà remplie !");
+
+            } catch (OccupiedException e) {
+                vue.affiche("Erreur : case déjà remplie, veuillez supprimer la valeur avant.");
+            } catch(ValueException e) {
+                vue.affiche("Erreur : la valeur rentrée doit être entre 1 et 4 compris.");
+            } catch(PositionException e) {
+                vue.affiche("Erreur : position incorrecte.");
+            } catch(ArrayIndexOutOfBoundsException e) {
+                vue.affiche("Erreur : veuillez respecter la façon d'encoder les coordonnées.");
+            } catch(LockException e) {
+                vue.affiche("Erreur : vous ne pouvez pas écrire sur cette case.");
+            } catch(DoublonException e) {
+                vue.affiche("Erreur : vous ne pouvez pas écrire ce nombre à cet endroit.");
             }
 
 

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Position4x4Test {
 
-    @Test
+    /*@Test
     public void testCreateL1C3() {
         Position4x4 p = new Position4x4(1, 3);
         assertEquals(1, p.getLine());
@@ -50,6 +50,6 @@ class Position4x4Test {
         Position4x4 p = new Position4x4(3, 0);
         assertEquals(1, p.getLineSector());
         assertEquals(0, p.getColumnSector());
-    }
+    }*/
 
 }

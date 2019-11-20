@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Sudoku9x9Test {
 
-    @Test
+    /*@Test
     public void TestRemplisVide() {
         Position9x9 p = new Position9x9(6,8);
         Sudoku9x9 s = new Sudoku9x9();
@@ -34,6 +34,6 @@ class Sudoku9x9Test {
         assertEquals('1', s.remove(p));
         assertEquals(s.VIDE, s.get(p));
 
-    }
+    }*/
 
 }

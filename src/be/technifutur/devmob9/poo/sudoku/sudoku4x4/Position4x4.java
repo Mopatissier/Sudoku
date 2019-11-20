@@ -1,18 +1,25 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku4x4;
 
+import be.technifutur.devmob9.poo.sudoku.PositionException;
+
 public class Position4x4 {
 
     private int position;
 
-    public Position4x4(int line, int column) {
+    public Position4x4(int line, int column) throws PositionException {
+
+        if(line < 0 || line > 3 || column < 0 || column > 3)
+            throw new PositionException();
 
         this.position = line*4 + column;
     }
 
-    public Position4x4(int pos) {
+    public Position4x4(int pos) throws PositionException {
 
-        this.position = pos;
+        this(pos/4, pos%4);
+
     }
+
 
     public int getLine() {
 

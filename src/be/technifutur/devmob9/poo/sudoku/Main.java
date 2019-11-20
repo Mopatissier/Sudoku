@@ -2,15 +2,19 @@ package be.technifutur.devmob9.poo.sudoku;
 
 import be.technifutur.devmob9.poo.sudoku.sudoku16x16.Sudoku16x16;
 import be.technifutur.devmob9.poo.sudoku.sudoku16x16.Sudoku16x16Ctrl;
+import be.technifutur.devmob9.poo.sudoku.sudoku16x16.Sudoku16x16Factory;
 import be.technifutur.devmob9.poo.sudoku.sudoku16x16.Sudoku16x16Vue;
 import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4;
 import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4Ctrl;
+import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4Factory;
 import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4Vue;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Ctrl;
+import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Factory;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Vue;
 import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoile;
 import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileCtrl;
+import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileFactory;
 import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileVue;
 import be.technifutur.devmob9.poo.sudoku.util.MyUser;
 import be.technifutur.devmob9.poo.sudoku.util.RemplisSudokus;
@@ -21,27 +25,22 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        RemplisSudokus remplissage = new RemplisSudokus();
-        MyUser user = new MyUser(remplissage.SudokuEtoileTab1());
+        //RemplisSudokus remplissage = new RemplisSudokus();
+        //MyUser user = new MyUser(remplissage.SudokuEtoileTab1());
 
-        //UserConsole user = new UserConsole();
+        UserConsole user = new UserConsole();
 
-        Sudoku4x4 s4x4Modele = new Sudoku4x4();
-        Sudoku4x4Vue s4x4Vue = new Sudoku4x4Vue(s4x4Modele, user);
-        Sudoku4x4Ctrl s4x4Ctrl = new Sudoku4x4Ctrl(s4x4Modele, s4x4Vue);
+        Sudoku4x4Factory s4x4 = new Sudoku4x4Factory();
+        Sudoku4x4Ctrl s4x4Ctrl = s4x4.getSudokuCtrl(user);
 
-        Sudoku9x9 s9x9Modele = new Sudoku9x9();
-        Sudoku9x9Vue s9x9Vue = new Sudoku9x9Vue(s9x9Modele, user);
-        Sudoku9x9Ctrl s9x9Ctrl = new Sudoku9x9Ctrl(s9x9Modele, s9x9Vue);
+        Sudoku9x9Factory s9x9 = new Sudoku9x9Factory();
+        Sudoku9x9Ctrl s9x9Ctrl = s9x9.getSudokuCtrl(user);
 
-        Sudoku16x16 s16x16Modele = new Sudoku16x16();
-        Sudoku16x16Vue s16x16Vue = new Sudoku16x16Vue(s16x16Modele, user);
-        Sudoku16x16Ctrl s16x16Ctrl = new Sudoku16x16Ctrl(s16x16Modele, s16x16Vue);
+        Sudoku16x16Factory s16x16 = new Sudoku16x16Factory();
+        Sudoku16x16Ctrl s16x16Ctrl = s16x16.getSudokuCtrl(user);
 
-
-        SudokuEtoile sEtoileModele = new SudokuEtoile();
-        SudokuEtoileVue sEtoileVue = new SudokuEtoileVue(sEtoileModele, user);
-        SudokuEtoileCtrl sEtoileCtrl = new SudokuEtoileCtrl(sEtoileModele, sEtoileVue);
+        SudokuEtoileFactory sEtoile = new SudokuEtoileFactory();
+        SudokuEtoileCtrl sEtoileCtrl = sEtoile.getSudokuCtrl(user);
 
         Scanner entree = new Scanner(System.in);
         String choix = "0";
