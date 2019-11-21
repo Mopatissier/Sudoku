@@ -33,8 +33,17 @@ public class SudokuEtoileCtrl {
 
                 String[] donnees = ajout.split(",");
 
-                line = Integer.parseInt(donnees[0]);
-                column = Integer.parseInt(donnees[1]);
+                if(donnees[0].charAt(0) >= 'A' && donnees[0].charAt(0) <= 'Z')
+                    line = donnees[0].charAt(0) - 'A' + 9;
+                else
+                    line = Integer.parseInt(donnees[0])-1;
+
+                if(donnees[1].charAt(0) >= 'A' && donnees[1].charAt(0) <= 'Z')
+                    column = donnees[1].charAt(0) - 'A' + 9;
+                else
+                    column = Integer.parseInt(donnees[1])-1;
+
+
                 valeur = donnees[2].charAt(0);
 
                 if(valeur == '0')
@@ -47,17 +56,17 @@ public class SudokuEtoileCtrl {
                 vue.affiche("");
 
             } catch (OccupiedException e) {
-                vue.affiche("Erreur : case déjà remplie, veuillez supprimer la valeur avant.");
-            } catch(ValueException e) {
+                vue.affiche("Erreur : case "+ e.getMessage()+ " déjà remplie, veuillez supprimer la valeur avant.");
+            } catch(IllegalValueException e) {
                 vue.affiche("Erreur : la valeur rentrée doit être entre 1 et 9 compris.");
             } catch(PositionException e) {
                 vue.affiche("Erreur : position incorrecte.");
-            } catch(ArrayIndexOutOfBoundsException e) {
+            } catch(ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 vue.affiche("Erreur : veuillez respecter la façon d'encoder les coordonnées.");
             } catch(LockException e) {
                 vue.affiche("Erreur : vous ne pouvez pas écrire sur cette case.");
             } catch(DoublonException e) {
-                vue.affiche("Erreur : vous ne pouvez pas écrire ce nombre à cet endroit.");
+                vue.affiche("Erreur : valeur déjà présente : " + e.getEndroit() + ".");
             }
 
 

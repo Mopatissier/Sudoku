@@ -21,13 +21,22 @@ public class Sudoku4x4Factory {
 
         try {
             for(int i = 0; i < 12; i++) {
-                set[i] = new ValueSet();
+
+                if(i < 4) {
+                    set[i] = new ValueSet("ligne " + (i+1));
+                } else if (i < 8) {
+                    set[i] = new ValueSet("colonne " + (i-4+1));
+                } else {
+                    set[i] = new ValueSet("secteur " + (i-8+1));
+                }
+                
             }
 
             s4x4Modele = new Sudoku4x4();
             for (int i = 0; i < 16; i++) {
-                Cellule cellule = new Cellule();
                 Position4x4 pos = new Position4x4(i);
+                Cellule cellule = new Cellule();
+
 
                 s4x4Modele.setCellule(pos, cellule);
 

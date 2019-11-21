@@ -21,13 +21,21 @@ public class Sudoku16x16Factory {
 
         try {
             for(int i = 0; i < 48; i++) {
-                set[i] = new ValueSet();
+
+                if(i < 16) {
+                    set[i] = new ValueSet("ligne");
+                } else if (i < 32) {
+                    set[i] = new ValueSet("colonne");
+                } else {
+                    set[i] = new ValueSet("secteur");
+                }
+
             }
 
             s16x16Modele = new Sudoku16x16();
             for (int i = 0; i < 256; i++) {
-                Cellule cellule = new Cellule();
                 Position16x16 pos = new Position16x16(i);
+                Cellule cellule = new Cellule();
 
                 s16x16Modele.setCellule(pos, cellule);
 

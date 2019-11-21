@@ -1,8 +1,9 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku4x4;
 
+import be.technifutur.devmob9.poo.sudoku.Position;
 import be.technifutur.devmob9.poo.sudoku.PositionException;
 
-public class Position4x4 {
+public class Position4x4 implements Position {
 
     private int position;
 
@@ -54,6 +55,7 @@ public class Position4x4 {
 
         return (this.getColumn()%2);
     }
+
 
 
 }

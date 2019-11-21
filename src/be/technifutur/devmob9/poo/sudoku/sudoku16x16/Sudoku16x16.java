@@ -1,83 +1,27 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku16x16;
 
-import be.technifutur.devmob9.poo.sudoku.DoublonException;
-import be.technifutur.devmob9.poo.sudoku.LockException;
-import be.technifutur.devmob9.poo.sudoku.OccupiedException;
-import be.technifutur.devmob9.poo.sudoku.ValueException;
-import be.technifutur.devmob9.poo.sudoku.util.Cellule;
+import be.technifutur.devmob9.poo.sudoku.*;
+import be.technifutur.devmob9.poo.sudoku.generalization.AbstractSudoku;
 
-public class Sudoku16x16 {
+public class Sudoku16x16 extends AbstractSudoku implements VisualSudoku, SudokuModifiable {
 
-    private boolean locked = false;
-    private Cellule[] cellule = new Cellule[256];
 
-    public void setCellule(Position16x16 p, Cellule c) {
-
-        cellule[p.getPos()] = c;
-
+    public Sudoku16x16() {
+        super(256);
     }
 
-    public Cellule getCellule(Position16x16 p) {
+    @Override
+    public boolean isValid(char value) {
 
-        return cellule[p.getPos()];
-
+        return (value >= '1' && value <= '9') || (value >= 'a' && value <= 'f');
     }
 
-    public void setValue(Position16x16 p, char valeur) throws ValueException, OccupiedException, LockException, DoublonException {
+    @Override
+    public Position getPosition(int index) throws PositionException{
 
-        if((valeur < '1' || valeur > '9') && (valeur < 'a' || valeur > 'f')) {
-            throw new ValueException();
-        } else {
-            cellule[p.getPos()].setValue(valeur);
-        }
+        Position16x16 pos = new Position16x16(index);
 
+        return pos;
     }
 
-    public char remove(Position16x16 p) throws LockException {
-        char tempo;
-
-        tempo = cellule[p.getPos()].getValue();
-
-        try {
-            cellule[p.getPos()].setValue(Cellule.VIDE);
-        } catch(OccupiedException e) {/* Ne devrait pas arriver.*/}
-        catch(DoublonException e) {/* Ne devrait pas arrvier. */}
-
-        return tempo;
-    }
-
-    public char get(Position16x16 p) {
-
-        return cellule[p.getPos()].getValue();
-
-    }
-
-    public boolean isComplet() {
-
-        boolean complet = false;
-        int i = 0;
-
-        while(i < 256 && cellule[i].getValue() != Cellule.VIDE)
-            i ++;
-
-        if(i == 256)
-            complet = true;
-
-        return complet;
-    }
-
-    public void lock() {
-
-        for(int i = 0; i < 256; i ++) {
-            if(cellule[i].getValue() != Cellule.VIDE) {
-                cellule[i].lock();
-                locked = true;
-            }
-        }
-    }
-
-    public boolean isLocked() {
-
-        return locked;
-    }
 }

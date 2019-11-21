@@ -1,83 +1,36 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku4x4;
 
-import be.technifutur.devmob9.poo.sudoku.PositionException;
-import be.technifutur.devmob9.poo.sudoku.util.Cellule;
+import be.technifutur.devmob9.poo.sudoku.SudokuVueModifiable;
+import be.technifutur.devmob9.poo.sudoku.VisualSudoku;
+import be.technifutur.devmob9.poo.sudoku.generalization.AbstractVueSudoku;
 import be.technifutur.devmob9.poo.sudoku.util.User;
 
-public class Sudoku4x4Vue {
+public class Sudoku4x4Vue extends AbstractVueSudoku implements SudokuVueModifiable {
 
-    private Sudoku4x4 modele;
-    private User user;
-    private String tableau;
+    public Sudoku4x4Vue(VisualSudoku modele, User user) {
+        super(modele, user);
+    }
 
-    public Sudoku4x4Vue(Sudoku4x4 modele, User user){
+    @Override
+    public  String createTab(){
 
         StringBuilder tempo = new StringBuilder();
 
         tempo.append("Sudoku 4x4 :\n\n");
 
-        tempo.append("╔═══╤═══╦═══╤═══╗\n");
-        tempo.append("║ . │ . ║ . │ . ║\n");
-        tempo.append("╟───┼───╫───┼───╢\n");
-        tempo.append("║ . │ . ║ . │ . ║\n");
-        tempo.append("╠═══╪═══╬═══╪═══╣\n");
-        tempo.append("║ . │ . ║ . │ . ║\n");
-        tempo.append("╟───┼───╫───┼───╢\n");
-        tempo.append("║ . │ . ║ . │ . ║\n");
-        tempo.append("╚═══╧═══╩═══╧═══╝\n");
+        tempo.append("     1   2   3   4  \n");
+        tempo.append("   ╔═══╤═══╦═══╤═══╗\n");
+        tempo.append(" 1 ║ . │ . ║ . │ . ║\n");
+        tempo.append("   ╟───┼───╫───┼───╢\n");
+        tempo.append(" 2 ║ . │ . ║ . │ . ║\n");
+        tempo.append("   ╠═══╪═══╬═══╪═══╣\n");
+        tempo.append(" 3 ║ . │ . ║ . │ . ║\n");
+        tempo.append("   ╟───┼───╫───┼───╢\n");
+        tempo.append(" 4 ║ . │ . ║ . │ . ║\n");
+        tempo.append("   ╚═══╧═══╩═══╧═══╝\n");
 
+        return tempo.toString();
 
-        this.tableau = tempo.toString();
-        this.modele = modele;
-
-        this.user = user;
-
-        tableau = tableau.replaceAll("\\.", "%s");
-
-    }
-
-
-    public void affiche(String message) {
-
-        String tab;
-
-        Character[] valeur = new Character[16];
-
-        try {
-            for (int i = 0; i < 16; i++) {
-                char val = modele.get(new Position4x4(i));
-                if (val == Cellule.VIDE) {
-                    valeur[i] = ' ';
-                } else {
-                    valeur[i] = val;
-                }
-
-            }
-        } catch(PositionException e) {/* Ne devrait jamais arriver */}
-
-        tab = String.format(tableau, (Object[]) valeur);
-
-        System.out.print(tab);
-
-        if(!message.equals(""))
-            System.out.println(message);
-
-
-    }
-
-    public String saisir(String prompt) {
-
-        System.out.print(prompt);
-
-        String entree = user.saisie();
-
-        return entree;
-
-    }
-
-    public void setUser(User u) {
-
-        user = u;
     }
 
 }

@@ -1,7 +1,23 @@
 package be.technifutur.devmob9.poo.sudoku.util;
 
 public class ValueSet {
-    private int data = 0;
+
+    private int data ;
+    private String name;
+
+    public ValueSet() {
+        data = 0;
+        name = "";
+    }
+
+    public ValueSet(String name) {
+        data = 0;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
 
     public boolean add(char c){

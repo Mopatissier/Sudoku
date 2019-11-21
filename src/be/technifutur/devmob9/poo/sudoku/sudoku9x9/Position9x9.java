@@ -1,8 +1,9 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku9x9;
 
+import be.technifutur.devmob9.poo.sudoku.Position;
 import be.technifutur.devmob9.poo.sudoku.PositionException;
 
-public class Position9x9 {
+public class Position9x9 implements Position {
 
     private int position;
 

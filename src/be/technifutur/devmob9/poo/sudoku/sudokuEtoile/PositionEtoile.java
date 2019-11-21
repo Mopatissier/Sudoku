@@ -1,8 +1,9 @@
 package be.technifutur.devmob9.poo.sudoku.sudokuEtoile;
 
+import be.technifutur.devmob9.poo.sudoku.Position;
 import be.technifutur.devmob9.poo.sudoku.PositionException;
 
-public class PositionEtoile {
+public class PositionEtoile implements Position {
 
     private int position;
 

@@ -7,11 +7,17 @@ import be.technifutur.devmob9.poo.sudoku.OccupiedException;
 public class Cellule {
 
     public static final char VIDE = 0;
-    char value = VIDE;
-    boolean modifiable = true;
-    int tailleSet = 0;
+    private char value;
+    private boolean modifiable;
+    private int tailleSet;
 
     ValueSet[] set = new ValueSet[5];
+
+    public Cellule() {
+        value = VIDE;
+        modifiable = true;
+        tailleSet = 0;
+    }
 
     public void setValue(char c) throws OccupiedException, LockException, DoublonException{
 
@@ -33,7 +39,7 @@ public class Cellule {
 
             for(int i = 0; i < tailleSet; i++) {
                 if(set[i].contains(c))
-                    throw new DoublonException();
+                    throw new DoublonException(set[i].getName());
             }
 
             for(int i = 0; i < tailleSet; i++) {
@@ -47,6 +53,18 @@ public class Cellule {
     }
 
    public char getValue() {
+        return value;
+    }
+
+
+    public char removeValue() throws LockException {
+        char value = this.value;
+
+        if(this.isLocked())
+            throw new LockException();
+
+        this.value = VIDE;
+
         return value;
     }
 
@@ -69,6 +87,10 @@ public class Cellule {
     public boolean isLocked()
     {
         return !modifiable;
+    }
+
+    public boolean isEmpty() {
+        return value == VIDE;
     }
 
 }

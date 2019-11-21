@@ -21,13 +21,22 @@ public class Sudoku9x9Factory {
 
         try {
             for(int i = 0; i < 27; i++) {
-                set[i] = new ValueSet();
+
+                if(i < 9) {
+                    set[i] = new ValueSet("ligne " + (i+1));
+                } else if (i < 18) {
+                    set[i] = new ValueSet("colonne " + (i-9+1));
+                } else {
+                    set[i] = new ValueSet("secteur " + (i-18+1));
+                }
+
             }
 
             s9x9Modele = new Sudoku9x9();
             for (int i = 0; i < 81; i++) {
-                Cellule cellule = new Cellule();
                 Position9x9 pos = new Position9x9(i);
+                Cellule cellule = new Cellule();
+
 
                 s9x9Modele.setCellule(pos, cellule);
 

@@ -1,83 +1,27 @@
 package be.technifutur.devmob9.poo.sudoku.sudoku9x9;
 
-import be.technifutur.devmob9.poo.sudoku.DoublonException;
-import be.technifutur.devmob9.poo.sudoku.LockException;
-import be.technifutur.devmob9.poo.sudoku.OccupiedException;
-import be.technifutur.devmob9.poo.sudoku.ValueException;
-import be.technifutur.devmob9.poo.sudoku.util.Cellule;
+import be.technifutur.devmob9.poo.sudoku.*;
+import be.technifutur.devmob9.poo.sudoku.generalization.AbstractSudoku;
 
-public class Sudoku9x9 {
+public class Sudoku9x9 extends AbstractSudoku implements VisualSudoku, SudokuModifiable {
 
-    private boolean locked = false;
-    private Cellule[] cellule = new Cellule[81];
 
-    public void setCellule(Position9x9 p, Cellule c) {
-
-        cellule[p.getPos()] = c;
-
+    public Sudoku9x9() {
+        super(81);
     }
 
-    public Cellule getCellule(Position9x9 p) {
+    @Override
+    public boolean isValid(char value) {
 
-        return cellule[p.getPos()];
-
+        return value >= '1' && value <= '9';
     }
 
-    public void setValue(Position9x9 p, char valeur) throws ValueException, OccupiedException, LockException, DoublonException {
+    @Override
+    public Position getPosition(int index) throws PositionException{
 
-        if(valeur < '1' || valeur > '9') {
-            throw new ValueException();
-        } else {
-            cellule[p.getPos()].setValue(valeur);
-        }
+        Position9x9 pos = new Position9x9(index);
 
+        return pos;
     }
 
-    public char remove(Position9x9 p) throws LockException {
-        char tempo;
-
-        tempo = cellule[p.getPos()].getValue();
-
-        try {
-            cellule[p.getPos()].setValue(Cellule.VIDE);
-        } catch(OccupiedException e) {/* Ne devrait pas arriver.*/}
-        catch(DoublonException e) {/* Ne devrait pas arrvier. */}
-
-        return tempo;
-    }
-
-    public char get(Position9x9 p) {
-
-        return cellule[p.getPos()].getValue();
-
-    }
-
-    public boolean isComplet() {
-
-        boolean complet = false;
-        int i = 0;
-
-        while(i < 81 && cellule[i].getValue() != Cellule.VIDE)
-            i ++;
-
-        if(i == 81)
-            complet = true;
-
-        return complet;
-    }
-
-    public void lock() {
-
-        for(int i = 0; i < 81; i ++) {
-            if(cellule[i].getValue() != Cellule.VIDE) {
-                cellule[i].lock();
-                locked = true;
-            }
-        }
-    }
-
-    public boolean isLocked() {
-
-        return locked;
-    }
 }

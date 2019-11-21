@@ -1,23 +1,13 @@
 package be.technifutur.devmob9.poo.sudoku;
 
-import be.technifutur.devmob9.poo.sudoku.sudoku16x16.Sudoku16x16;
 import be.technifutur.devmob9.poo.sudoku.sudoku16x16.Sudoku16x16Ctrl;
 import be.technifutur.devmob9.poo.sudoku.sudoku16x16.Sudoku16x16Factory;
-import be.technifutur.devmob9.poo.sudoku.sudoku16x16.Sudoku16x16Vue;
-import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4;
 import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4Ctrl;
 import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4Factory;
-import be.technifutur.devmob9.poo.sudoku.sudoku4x4.Sudoku4x4Vue;
-import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Ctrl;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Factory;
-import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Vue;
-import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoile;
 import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileCtrl;
 import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileFactory;
-import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileVue;
-import be.technifutur.devmob9.poo.sudoku.util.MyUser;
-import be.technifutur.devmob9.poo.sudoku.util.RemplisSudokus;
 import be.technifutur.devmob9.poo.sudoku.util.UserConsole;
 
 import java.util.Scanner;
