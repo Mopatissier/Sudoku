@@ -37,12 +37,13 @@ public class Sudoku4x4Ctrl {
                 column = Integer.parseInt(donnees[1])-1;
                 valeur = donnees[2].charAt(0);
 
-                if(valeur == '0')
-                    valeur = Cellule.VIDE;
 
                 pos = new Position4x4(line, column);
 
-                modele.setValue(pos, valeur);
+                if(valeur != '0')
+                    modele.setValue(pos, valeur);
+                else
+                    modele.remove(pos);
 
                 vue.affiche("");
 

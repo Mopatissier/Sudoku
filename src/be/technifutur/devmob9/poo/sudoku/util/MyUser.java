@@ -1,9 +1,11 @@
 package be.technifutur.devmob9.poo.sudoku.util;
 
+import java.util.Scanner;
+
 public class MyUser implements User{
 
-    private int cpt = 0;
     private String[] test;
+    private int cpt = 0;
 
     public MyUser(String[] tab) {
 
@@ -14,10 +16,16 @@ public class MyUser implements User{
     @Override
     public String saisie() {
 
-        if(cpt > test.length)
-            cpt = 0;
+        String saisie;
+        Scanner scan = new Scanner(System.in);
 
-        return test[cpt++];
+        if(cpt < test.length) {
+            saisie = test[cpt++];
+        } else {
+            saisie = scan.nextLine();
+        }
+
+        return saisie;
     }
 
 }

@@ -8,6 +8,8 @@ import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Ctrl;
 import be.technifutur.devmob9.poo.sudoku.sudoku9x9.Sudoku9x9Factory;
 import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileCtrl;
 import be.technifutur.devmob9.poo.sudoku.sudokuEtoile.SudokuEtoileFactory;
+import be.technifutur.devmob9.poo.sudoku.util.MyUser;
+import be.technifutur.devmob9.poo.sudoku.util.RemplisSudokus;
 import be.technifutur.devmob9.poo.sudoku.util.UserConsole;
 
 import java.util.Scanner;
@@ -15,10 +17,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        //RemplisSudokus remplissage = new RemplisSudokus();
-        //MyUser user = new MyUser(remplissage.SudokuEtoileTab1());
+        RemplisSudokus remplissage = new RemplisSudokus();
+        MyUser user = new MyUser(remplissage.Sudoku9x9Resolution5());
 
-        UserConsole user = new UserConsole();
+        //UserConsole user = new UserConsole();
 
         Sudoku4x4Factory s4x4 = new Sudoku4x4Factory();
         Sudoku4x4Ctrl s4x4Ctrl = s4x4.getSudokuCtrl(user);

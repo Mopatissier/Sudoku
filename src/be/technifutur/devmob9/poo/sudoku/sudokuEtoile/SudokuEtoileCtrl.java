@@ -46,17 +46,17 @@ public class SudokuEtoileCtrl {
 
                 valeur = donnees[2].charAt(0);
 
-                if(valeur == '0')
-                    valeur = Cellule.VIDE;
-
                 pos = new PositionEtoile(line, column);
 
-                modele.setValue(pos, valeur);
+                if(valeur != '0')
+                    modele.setValue(pos, valeur);
+                else
+                    modele.remove(pos);
 
                 vue.affiche("");
 
             } catch (OccupiedException e) {
-                vue.affiche("Erreur : case "+ e.getMessage()+ " déjà remplie, veuillez supprimer la valeur avant.");
+                vue.affiche("Erreur : case déjà remplie, veuillez supprimer la valeur avant.");
             } catch(IllegalValueException e) {
                 vue.affiche("Erreur : la valeur rentrée doit être entre 1 et 9 compris.");
             } catch(PositionException e) {

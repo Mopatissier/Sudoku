@@ -54,6 +54,7 @@ public abstract class AbstractSudoku implements SudokuModifiable, VisualSudoku{
 
     }
 
+    @Override
     public char remove(Position p) throws LockException {
 
         return cellule[p.getPos()].removeValue();
